@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <style>
+            body
+            {
+                background-color: lightgrey;
+            }
+            #box
+            {
+                background-color: whitesmoke;
+                border-style: solid;
+                padding: 5px;
+                width: 400px;
+            }		
+        </style>
+        <script>
+            var filternr;
+            var xmax;
+            var xmin;
+
+            window.onload=function()
+            {
+                filternr = document.getElementById("filternr");
+                xmax = document.getElementById("xmax");
+                xmin = document.getElementById("xmin");
+
+                purge();
+                filternr.focus();                
+            }
+
+            function validateData()
+            {
+                if(filternr.value == "" || xmax.value == "" || xmin.value == "")
+                {
+                    alert("Formular unvollständig!");
+                    return false;
+                }
+                else
+                {
+                    document.getElementById("Form1").submit();
+                    return true;
+                }               
+            }     
+
+            function purge()
+            {              
+                filternr.value = "";
+                xmax.value = "";
+                xmin.value = "";
+                filternr.focus();                
+            }
+        </script>
+    </head>
+    <body>
+        <form id="Form1" action="database.php" method="post">
+            <div id="box">
+                        <label style="text-decoration: underline;">Datensatz angeben</label><p></p>
+                        <label>Filternr:&nbsp; <input id="filternr" name="filternr" type="text" style="width: 60px;"></label><p></p>  
+                        <label>Xmax:&nbsp;&nbsp;&nbsp; <input id="xmax" name="xmax" type="text" style="width: 60px;"></label><p></p>
+                        <label>Xmin: &nbsp;&nbsp;&nbsp;&nbsp;<input id="xmin" name="xmin" type="text" style="width: 60px;"></label><p></p>                     
+                        <input id="absenden" type="button" value="Absenden" onclick="validateData()"/> 
+                        <input id="löschen" type="button" value="Zurücksetzten" onclick="purge()"/>
+			</form>
+		</div>
+    </body>
+</html>
